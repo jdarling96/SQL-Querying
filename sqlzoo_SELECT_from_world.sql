@@ -45,3 +45,53 @@ SELECT name, population,area
   WHERE
   (population > 250000000 OR area > 3000000)
   AND NOT(population > 250000000 AND area > 3000000)
+
+--Show the name and population in millions and the GDP in billions for the countries of the continent 'South America'. Use the ROUND function to show the values to two decimal places.
+--For South America show population in millions and GDP in billions both to 2 decimal places.
+
+SELECT name, ROUND(population/1000000, 2), ROUND(gdp/1000000000, 2) FROM world 
+ WHERE continent = 'South America'
+
+--Show the name and per-capita GDP for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros). Round this value to the nearest 1000.
+--Show per-capita GDP for the trillion dollar countries to the nearest $1000.
+SELECT name, ROUND(gdp/population,-3)
+  FROM world
+  WHERE
+  gdp>1000000000000
+
+--Greece has capital Athens.
+
+--Each of the strings 'Greece', and 'Athens' has 6 characters.
+
+--Show the name and capital where the name and the capital have the same number of characters.
+
+--You can use the LENGTH function to find the number of characters in a string
+--For Microsoft SQL Server the function LENGTH is LEN
+SELECT name, capital
+  FROM world
+ WHERE LEN(name) = LEN(capital) 
+
+--The capital of Sweden is Stockholm. Both words start with the letter 'S'.
+
+--Show the name and the capital where the first letters of each match. Don't include countries where the name and the capital are the same word.
+--You can use the function LEFT to isolate the first character.
+--You can use <> as the NOT EQUALS operator.
+SELECT name, capital
+FROM world
+WHERE LEFT(name,1) = LEFT(capital,1) AND NOT name IN (capital
+
+--Equatorial Guinea and Dominican Republic have all of the vowels (a e i o u) in the name. They don't count because they have more than one word in the name.
+--Find the country that has all the vowels and no spaces in its name.
+
+--You can use the phrase name NOT LIKE '%a%' to exclude characters from your results.
+--The query shown misses countries like Bahamas and Belarus because they contain at least one 'a'
+SELECT name
+   FROM world
+WHERE name LIKE 'M%'
+ AND name LIKE '%a%'
+ AND name LIKE '%e%'
+ AND name LIKE '%i%'
+ AND name LIKE '%o%'
+ AND name LIKE '%u%'
+ 
+  

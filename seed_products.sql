@@ -10,3 +10,4 @@ CREATE TABLE products (
   price FLOAT CHECK (price > 0),
   can_be_returned BOOLEAN NOT NULL
 );
+
